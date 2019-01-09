@@ -206,6 +206,7 @@ helper.secrets.mockSuite(helper.suiteName(__filename), ['app', 'azure'], functio
     return helper.apiClient.azureContainers(
       helper.testaccount,
     ).then(function(result) {
+      console.log(result); process.exit();
       assert(result.containers.includes('container-test'));
     });
   });
