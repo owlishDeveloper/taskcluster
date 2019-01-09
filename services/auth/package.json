@@ -25,7 +25,7 @@
     "morgan-debug": "^2.0.0",
     "quick-lru": "^2.0.0",
     "sentry-api": "^0.1.1",
-    "slugid": "^1.1.0",
+    "slugid": "^2.0.0",
     "statsum": "^0.5.1",
     "superagent": "^3.8.1"
   }
