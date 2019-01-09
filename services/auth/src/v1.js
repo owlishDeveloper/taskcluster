@@ -7,6 +7,7 @@ const _ = require('lodash');
 const signaturevalidator = require('./signaturevalidator');
 const ScopeResolver = require('./scoperesolver');
 const Hashids = require('hashids');
+const Entity = require('azure-entities');
 
 /**
  * Helper to return a role as defined in the blob to one suitable for return.
@@ -124,7 +125,7 @@ builder.declare({
   route: '/clients/',
   query: {
     prefix: /^[A-Za-z0-9!@/:.+|_-]+$/, // should match clientId above
-    continuationToken: /./,
+    continuationToken: Entity.continuationTokenPattern,
     limit: /^[0-9]+$/,
   },
   name: 'listClients',
@@ -592,7 +593,7 @@ builder.declare({
   method: 'get',
   route: '/roleids/',
   query: {
-    continuationToken: /./,
+    continuationToken: Entity.continuationTokenPattern,
     limit: /^[0-9]+$/,
   },
   name: 'listRoleIds',

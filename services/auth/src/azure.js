@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const azure = require('fast-azure-storage');
+const Entity = require('azure-entities');
 const builder = require('./v1');
 
 // keyed by account/tableName, the last time createTable was called for the
@@ -30,7 +31,7 @@ builder.declare({
   route: '/azure/:account/tables',
   name: 'azureTables',
   query: {
-    continuationToken: /^.*$/,
+    continuationToken: Entity.continuationTokenPattern,
   },
   input: undefined,
   output: 'azure-table-list-response.yml',
@@ -150,7 +151,7 @@ builder.declare({
   route: '/azure/:account/containers',
   name: 'azureContainers',
   query: {
-    continuationToken: /^[A-Za-z\/][A-Za-z0-9-\/]{2,62}$/,
+    continuationToken: Entity.continuationTokenPattern,
   },
   input: undefined,
   output: 'azure-container-list-response.yml',
