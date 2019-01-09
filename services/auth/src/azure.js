@@ -150,7 +150,7 @@ builder.declare({
   route: '/azure/:account/containers',
   name: 'azureContainers',
   query: {
-    continuationToken: /^[A-Za-z][A-Za-z0-9]{2,62}$/,
+    continuationToken: /^[A-Za-z\/][A-Za-z0-9-\/]{2,62}$/,
   },
   input: undefined,
   output: 'azure-container-list-response.yml',
