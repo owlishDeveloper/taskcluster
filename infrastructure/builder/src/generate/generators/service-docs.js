@@ -1,14 +1,11 @@
 const util = require('util');
-const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const rimraf = util.promisify(require('rimraf'));
 const mkdirp = util.promisify(require('mkdirp'));
 const References = require('taskcluster-lib-references');
 const exec = util.promisify(require('child_process').execFile);
-const {REPO_ROOT, readFile, readJSON, writeJSON, modifyFile, modifyJSON} = require('../util');
-
-const rename = util.promisify(fs.rename);
+const {REPO_ROOT, writeJSON} = require('../util');
 
 /**
  * This file defines a few tasks that generate all of the documentation and

@@ -1,7 +1,5 @@
-const _ = require('lodash');
 const os = require('os');
 const util = require('util');
-const fs = require('fs');
 const path = require('path');
 const config = require('typed-env-config');
 const rimraf = util.promisify(require('rimraf'));
@@ -9,13 +7,11 @@ const mkdirp = util.promisify(require('mkdirp'));
 const {ClusterSpec} = require('../formats/cluster-spec');
 const {TerraformJson} = require('../formats/tf-json');
 const {TaskGraph, Lock, ConsoleRenderer, LogRenderer} = require('console-taskgraph');
-const {gitClone} = require('./utils');
 const generateRepoTasks = require('./repo');
 const generateMonoimageTasks = require('./monoimage');
 
 const _kindTaskGenerators = {
   service: require('./service'),
-  other: require('./other'),
 };
 
 class Build {
