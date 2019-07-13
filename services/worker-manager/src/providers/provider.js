@@ -61,7 +61,7 @@ class Provider {
   async scanPrepare() {
   }
 
-  async checkWorker({Worker}) {
+  async checkWorker({Worker}) { // todo: it seems we're actually getting worker object
   }
 
   async scanCleanup() {
