@@ -37,6 +37,7 @@ class AwsProvider extends Provider {
 
   async provision({workerPool}) {
     const {workerPoolId} = workerPool;
+    console.log('🍊', workerPool.providerData[this.providerId]);
 
     if (!workerPool.providerData[this.providerId] || workerPool.providerData[this.providerId].running === undefined) {
       await workerPool.modify(wt => {
@@ -134,6 +135,8 @@ class AwsProvider extends Provider {
         WorkerPoolError: this.WorkerPoolError,
       });
     }
+
+    console.log('🥥', this.seen);
 
     return Promise.all(spawned.Instances.map(i => {
       return this.Worker.create({
@@ -244,6 +247,7 @@ class AwsProvider extends Provider {
   }
 
   async scanCleanup() {
+    console.log('🥑', this.seen);
     await Promise.all(Object.entries(this.seen).map(async ([workerPoolId, seen]) => {
       const workerPool = await this.WorkerPool.load({
         workerPoolId,
@@ -254,6 +258,7 @@ class AwsProvider extends Provider {
       }
 
       await workerPool.modify(wp => {
+        console.log('🌶', `Modifying workerPool with ${seen}`);
         if (!wp.providerData[this.providerId]) {
           wp.providerData[this.providerId] = {};
         }
