@@ -139,6 +139,11 @@ class AwsProvider extends Provider {
     console.log('🥥', this.seen);
 
     return Promise.all(spawned.Instances.map(i => {
+      this.seen[workerPoolId] = this.seen[workerPoolId] || 0;
+      if (i.State.Name !== 'terminated' || i.State.Name !== 'stopped') {
+        this.seen[workerPoolId]++;
+      }
+
       return this.Worker.create({
         workerPoolId,
         providerId: this.providerId,
